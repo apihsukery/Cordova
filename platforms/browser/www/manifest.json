@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Arena Sibu",
+  "short_name": "Arena Sibu",
+  "version": "io.cordova.arenasibu",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "author": "Apache Cordova Team",
+  "icons": [],
+  "start_url": "view/login.html"
+}
