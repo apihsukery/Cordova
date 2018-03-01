@@ -1,157 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Login</title>
+    <title>Gentelella Alela! | </title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Create / Open a database -->
-    <!-- <script src="js/openDB.js"></script> -->
+    <!-- create/open database -->
+    <script src="js/login.js"></script>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.js"></script>
 
+  </head>
 
-    <!-- <script type="text/javascript">
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
 
-        var myDB = null;
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form>
+              <h1>Login Form</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Email" id="email" required="" />
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" id="password" required="" />
+              </div>
+              <div>
+                <button class="btn btn-default" id="login" >Log in</button>
+                <!-- <a class="reset_pass" href="#">Lost your password?</a> -->
+              </div>
 
-        // document.addEventListener('deviceready', function() {
-        //     myDB = window.sqlitePlugin.openDatabase({name: "assb.db", location: 'default'});
-        //     myDB.transaction(createTable);
-        // });
+              <div class="clearfix"></div>
 
-        document.addEventListener("deviceready",onDeviceReady,false);
+              <div class="separator">
+                <!-- <p class="change_link">New to site?
+                  <a href="#signup" class="to_register"> Create Account </a>
+                </p> -->
 
-        function onDeviceReady(){
-            myDB = window.sqlitePlugin.openDatabase({name: "assb.db", location: 'default'});
-            myDB.transaction(createTable);
-        }
+                <div class="clearfix"></div>
+                <br />
 
-        function createTable(tx){
-            var query = "CREATE TABLE IF NOT EXISTS user ("
-                        +"id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                        +"username varchar(255),"
-                        +"password varchar(255),"
-                        +"email varchar(255) NULL"
-                        +") ";
-            tx.executeSql(query, []); 
-            alert("successfully");
-        };
-
-        // function defaultData(tx){
-        //     tx.executeSql('INSERT INTO user (username,password) VALUES (?,?)',['assb_admin','assb_admin'],
-        //     function(tx,result){
-        //         alert("Table created successfully")
-        //     },
-        //     function(error){
-        //         alert("Error occurred while creating the table.");
-        //     });
-        // }
-
-    </script> -->
-
-    <script type="text/javascript">
-            
-            //add listener when device ready
-            document.addEventListener("deviceready", onDeviceReady, false);
-            var db = window.openDatabase("assb", "1.0", "assb", 200000); //will create database Dummy_DB or open it
-            // var db = window.sqlitePlugin.openDatabase({name: "assb.db", location: 'default'});
-         
-            //function will be called when device ready
-            function onDeviceReady(){
-
-            }
-            
-            populateDB();
-
-            //create table and insert some record
-            function populateDB(tx) {
-
-                db.transaction(function(tx){
-                    var query = "CREATE TABLE IF NOT EXISTS user ("
-                        +"id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                        +"email varchar(255),"
-                        +"name varchar(255),"
-                        +"password varchar(255)"
-                        +") ";
-                    tx.executeSql(query,[],function(insert,result){
-                        insert.executeSql("INSERT INTO user (email, name, password) SELECT * FROM (SELECT 'admin@arenasibu.com', 'ADMIN', 'assb_admin') AS tmp WHERE NOT EXISTS (SELECT email FROM user WHERE email = 'admin@arenasibu.com') LIMIT 1");
-
-                        console.log('admin inserted');
-                    },
-                    function(error){
-                        console.log("error");
-                    });
-                    
-                });
-            }
-
-        </script>
-
-</head>
-
-<body>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="text-center">
-                        <img src="../img/assb_logo.png" width="300" height="190">
-                    </div>
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form>
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <button class="btn btn-lg btn-success btn-block" id="login">Login</button>
-                            </fieldset>
-                        </form>
-                    </div>
+                <div>
+                  <h1><img src="images/arenasibu.png" width="30" height="30"> Arena Sibu Sdn Bhd</h1>
+                  <!-- <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p> -->
                 </div>
-            </div>
+              </div>
+            </form>
+          </section>
         </div>
-    </div>
 
-    <script type="text/javascript">
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form>
+              <h1>Create Account</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Username" required="" />
+              </div>
+              <div>
+                <input type="email" class="form-control" placeholder="Email" required="" />
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" required="" />
+              </div>
+              <div>
+                <a class="btn btn-default submit" href="index.html">Submit</a>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Already a member ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript">
 
         $(document).ready(function(){
 
@@ -161,6 +117,7 @@
                 db.transaction(function(transaction){
                     transaction.executeSql("SELECT name FROM user WHERE email=? AND password=?",[email,password],function(tx,result){
                         // alert(result.rows.length);
+                        window.localStorage.setItem('name', result.rows.item(0).name);
                         if(result.rows.length >= 1){window.location = "index.html";}
                         else{ alert("Email or Password not match"); }
                     });
@@ -170,20 +127,6 @@
 
         });
             
-    </script>
-
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-</body>
+  </script>
 
 </html>
